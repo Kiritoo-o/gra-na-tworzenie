@@ -1394,15 +1394,6 @@
           "effects": [],
           "behaviors": [
             {
-              "name": "FaceForward",
-              "type": "FaceForward::FaceForward",
-              "RotationSpeed": 0,
-              "OffsetAngle": 0,
-              "PreviousX": 2.0247e-320,
-              "PreviousY": 2.0247e-320,
-              "MovementDirection": 0
-            },
-            {
               "name": "SmoothCamera",
               "type": "SmoothCamera::SmoothCamera",
               "LeftwardSpeed": 1,
@@ -1470,8 +1461,8 @@
                       "points": [],
                       "originPoint": {
                         "name": "origine",
-                        "x": 0,
-                        "y": 0
+                        "x": 223.5,
+                        "y": 260.5
                       },
                       "centerPoint": {
                         "automatic": true,
@@ -1518,8 +1509,8 @@
                       "points": [],
                       "originPoint": {
                         "name": "origine",
-                        "x": 0,
-                        "y": 0
+                        "x": 223.5,
+                        "y": 260.5
                       },
                       "centerPoint": {
                         "automatic": true,
@@ -1590,17 +1581,6 @@
                 "-",
                 "10"
               ]
-            },
-            {
-              "type": {
-                "value": "AnimatableCapability::AnimatableBehavior::SetName"
-              },
-              "parameters": [
-                "TempChar",
-                "Animation",
-                "=",
-                "\"left\""
-              ]
             }
           ]
         },
@@ -1626,17 +1606,6 @@
                 "TempChar",
                 "+",
                 "10"
-              ]
-            },
-            {
-              "type": {
-                "value": "AnimatableCapability::AnimatableBehavior::SetName"
-              },
-              "parameters": [
-                "TempChar",
-                "Animation",
-                "=",
-                "\"right\""
               ]
             }
           ]
@@ -1731,7 +1700,7 @@
                 "TempChar",
                 "Mouse_Position.MouseX",
                 "Mouse_Position.MouseY",
-                "360",
+                "0",
                 ""
               ]
             }
@@ -1742,25 +1711,51 @@
           "conditions": [
             {
               "type": {
-                "value": "NumberVariable"
+                "value": "PosX"
               },
               "parameters": [
-                "Mouse_Position.MouseX",
-                ">",
-                "1"
+                "TempChar",
+                "<",
+                "Mouse_Position.MouseX"
               ]
             }
           ],
           "actions": [
             {
               "type": {
-                "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                "value": "FlippableCapability::FlippableBehavior::FlipY"
               },
               "parameters": [
                 "TempChar",
-                "Animation",
-                "=",
-                "\"right\""
+                "Flippable",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "PosX"
+              },
+              "parameters": [
+                "TempChar",
+                ">",
+                "Mouse_Position.MouseX"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "FlippableCapability::FlippableBehavior::FlipY"
+              },
+              "parameters": [
+                "TempChar",
+                "Flippable",
+                "yes"
               ]
             }
           ]
@@ -1841,10 +1836,6 @@
         {
           "name": "Effect",
           "type": "EffectCapability::EffectBehavior"
-        },
-        {
-          "name": "FaceForward",
-          "type": "FaceForward::FaceForward"
         },
         {
           "name": "Flippable",
