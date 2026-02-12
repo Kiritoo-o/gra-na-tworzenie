@@ -302,6 +302,22 @@
       "name": "TempSettings",
       "type": "string",
       "value": "0"
+    },
+    {
+      "name": "Mouse_Position",
+      "type": "structure",
+      "children": [
+        {
+          "name": "MouseX",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "name": "MouseY",
+          "type": "number",
+          "value": 0
+        }
+      ]
     }
   ],
   "layouts": [
@@ -1265,7 +1281,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 1.5174985595891415,
+        "zoomFactor": 0.49138775453293565,
         "windowMask": false,
         "selectedLayer": "",
         "gameEditorMode": "instances-editor"
@@ -1377,6 +1393,15 @@
           "variables": [],
           "effects": [],
           "behaviors": [
+            {
+              "name": "FaceForward",
+              "type": "FaceForward::FaceForward",
+              "RotationSpeed": 0,
+              "OffsetAngle": 0,
+              "PreviousX": 2.0247e-320,
+              "PreviousY": 2.0247e-320,
+              "MovementDirection": 0
+            },
             {
               "name": "SmoothCamera",
               "type": "SmoothCamera::SmoothCamera",
@@ -1671,7 +1696,74 @@
         {
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
-          "actions": []
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Mouse_Position.MouseX",
+                "=",
+                "CursorX()"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Mouse_Position.MouseY",
+                "=",
+                "CursorY()"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "RotateTowardPosition"
+              },
+              "parameters": [
+                "TempChar",
+                "Mouse_Position.MouseX",
+                "Mouse_Position.MouseY",
+                "360",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "Mouse_Position.MouseX",
+                ">",
+                "1"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::SetName"
+              },
+              "parameters": [
+                "TempChar",
+                "Animation",
+                "=",
+                "\"right\""
+              ]
+            }
+          ]
         }
       ],
       "layers": [
@@ -1749,6 +1841,10 @@
         {
           "name": "Effect",
           "type": "EffectCapability::EffectBehavior"
+        },
+        {
+          "name": "FaceForward",
+          "type": "FaceForward::FaceForward"
         },
         {
           "name": "Flippable",
