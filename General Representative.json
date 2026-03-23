@@ -422,6 +422,14 @@
         "name": "NewSprite2",
         "smoothed": true,
         "userAdded": false
+      },
+      {
+        "file": "assets/NewSprite3.png",
+        "kind": "image",
+        "metadata": "{\"extension\":\".png\"}",
+        "name": "NewSprite3",
+        "smoothed": true,
+        "userAdded": false
       }
     ]
   },
@@ -1431,7 +1439,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.9227465364204567,
+        "zoomFactor": 0.5995738389111085,
         "windowMask": false,
         "selectedLayer": "",
         "gameEditorMode": "instances-editor"
@@ -1580,7 +1588,7 @@
           "depth": 3,
           "height": 67,
           "keepRatio": true,
-          "layer": "",
+          "layer": "Hp",
           "name": "Punkty",
           "persistentUuid": "13fc1750-8506-4fed-b8f7-e7758c12a32e",
           "width": 618,
@@ -1673,10 +1681,10 @@
             {
               "name": "Health",
               "type": "Health::Health",
-              "Health": 3,
+              "Health": 10,
               "CurrentHealth": 0,
-              "MaxHealth": 3,
-              "DamageCooldown": 0,
+              "MaxHealth": 10,
+              "DamageCooldown": 0.5,
               "AllowOverHealing": false,
               "IsHealthJustDamaged": false,
               "DamageToBeApplied": 0,
@@ -1760,6 +1768,36 @@
           "variables": [],
           "effects": [],
           "behaviors": [
+            {
+              "name": "FireBullet",
+              "type": "FireBullet::FireBullet",
+              "FireCooldown": 0.5,
+              "HasJustFired": false,
+              "RotateBullet": true,
+              "FiringArc": 180,
+              "BulletQuantity": 1,
+              "AngleVariance": 0,
+              "BulletSpeedVariance": 0,
+              "AmmoQuantity": 0,
+              "ShotsPerReload": 0,
+              "ReloadDuration": 0,
+              "MaxAmmo": 0,
+              "ShotsBeforeNextReload": 0,
+              "TotalShotsFired": 0,
+              "TotalBulletsCreated": 0,
+              "StartingAmmo": 0,
+              "TotalReloadsCompleted": 0,
+              "UnlimitedAmmo": true,
+              "ReloadInProgress": false,
+              "HeatIncreasePerShot": 0,
+              "HeatLevel": 0,
+              "AutomaticReloading": true,
+              "OverheatDuration": 0,
+              "LinearCoolingRate": 0.1,
+              "ExponentialCoolingRate": 0.3,
+              "BulletLayer": "",
+              "RandomizedAngle": 0
+            },
             {
               "name": "Health",
               "type": "Health::Health",
@@ -2131,36 +2169,36 @@
                   "sprites": [
                     {
                       "hasCustomCollisionMask": true,
-                      "image": "NewSprite2",
+                      "image": "NewSprite3",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
                         "x": 0,
-                        "y": 0
+                        "y": 71
                       },
                       "centerPoint": {
-                        "automatic": true,
+                        "automatic": false,
                         "name": "centre",
-                        "x": 0,
-                        "y": 0
+                        "x": -0.5,
+                        "y": 71
                       },
                       "customCollisionMask": [
                         [
                           {
                             "x": 0,
-                            "y": 5
+                            "y": 24
                           },
                           {
-                            "x": 64,
-                            "y": 5
+                            "x": 128,
+                            "y": 24
                           },
                           {
-                            "x": 64,
-                            "y": 64
+                            "x": 128,
+                            "y": 111
                           },
                           {
                             "x": 0,
-                            "y": 64
+                            "y": 111
                           }
                         ]
                       ]
@@ -2480,38 +2518,6 @@
                 "Animation",
                 "=",
                 "0"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "MouseButtonFromTextPressed"
-              },
-              "parameters": [
-                "",
-                "\"Left\""
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "FireBullet::FireBullet::FireTowardPosition"
-              },
-              "parameters": [
-                "Character",
-                "FireBullet",
-                "EnemyTemp.X()",
-                "EnemyTemp.CenterY()",
-                "",
-                "Mouse_Position.MouseX",
-                "Mouse_Position.MouseY",
-                "100",
-                ""
               ]
             }
           ]
@@ -2883,7 +2889,6 @@
           "colorG": 176,
           "colorR": 74,
           "creationTime": 0,
-          "folded": true,
           "name": "Atak",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -2892,14 +2897,80 @@
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [],
               "actions": []
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "MouseButtonFromTextPressed"
+                  },
+                  "parameters": [
+                    "",
+                    "\"Left\""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "FireBullet::FireBullet::FireTowardPosition"
+                  },
+                  "parameters": [
+                    "Character",
+                    "FireBullet",
+                    "Character.X()",
+                    "Character.Y()",
+                    "atak",
+                    "Mouse_Position.MouseX",
+                    "Mouse_Position.MouseY",
+                    "0",
+                    ""
+                  ]
+                }
+              ],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "CollisionNP"
+                      },
+                      "parameters": [
+                        "atak",
+                        "EnemyTemp",
+                        "",
+                        "",
+                        "no"
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "Health::Health::Hit"
+                      },
+                      "parameters": [
+                        "EnemyTemp",
+                        "Health",
+                        "10",
+                        "",
+                        "",
+                        ""
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": []
             }
           ],
           "parameters": []
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": []
         }
       ],
       "layers": [
@@ -3031,6 +3102,10 @@
         {
           "name": "Effect",
           "type": "EffectCapability::EffectBehavior"
+        },
+        {
+          "name": "FireBullet",
+          "type": "FireBullet::FireBullet"
         },
         {
           "name": "Flippable",
