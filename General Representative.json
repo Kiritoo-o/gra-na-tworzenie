@@ -1,7 +1,7 @@
 {
   "firstLayout": "",
   "gdVersion": {
-    "build": 261,
+    "build": 268,
     "major": 5,
     "minor": 6,
     "revision": 0
@@ -18,6 +18,7 @@
     "scaleMode": "linear",
     "sizeOnStartupMode": "",
     "templateSlug": "",
+    "useDeprecatedZeroAsDefaultStringVariable": true,
     "version": "1.0.0",
     "name": "General Representative",
     "description": "",
@@ -81,7 +82,6 @@
     "authorUsernames": [],
     "categories": [],
     "playableDevices": [
-      "mobile",
       "mobile"
     ],
     "extensionProperties": [
@@ -475,6 +475,11 @@
       "name": "Points",
       "type": "number",
       "value": 0
+    },
+    {
+      "name": "Highscore",
+      "type": "number",
+      "value": 0
     }
   ],
   "layouts": [
@@ -500,7 +505,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.4598521426736338,
+        "zoomFactor": 0.491387754532936,
         "windowMask": false,
         "selectedLayer": "background",
         "gameEditorMode": "instances-editor"
@@ -555,6 +560,22 @@
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "background",
+          "name": "Highscore2",
+          "persistentUuid": "6eeebc3d-9211-4268-95a1-9352a6e429ef",
+          "width": 0,
+          "x": 1484,
+          "y": 520,
+          "zOrder": 4,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
         }
       ],
       "objects": [
@@ -577,6 +598,7 @@
         {
           "assetStoreId": "5f0df6131c9646dcbe98798196db5b6d806eb25564f86d2e119a084d1e20bf74",
           "name": "Start_the_game",
+          "persistentUuid": "e7317266-7d3f-4262-b220-d1e5ea4be8d4",
           "type": "PanelSpriteButton::PanelSpriteButton",
           "variant": "Black Decorated Button",
           "variables": [],
@@ -609,6 +631,49 @@
             "HoveredFadeOutDuration": 0.25,
             "LabelText": "Ustawienia"
           }
+        },
+        {
+          "assetStoreId": "",
+          "bold": false,
+          "italic": false,
+          "name": "Highscore2",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "string": "Text",
+          "font": "",
+          "textAlignment": "left",
+          "characterSize": 50,
+          "color": {
+            "b": 255,
+            "g": 255,
+            "r": 255
+          },
+          "content": {
+            "bold": false,
+            "isOutlineEnabled": true,
+            "isShadowEnabled": false,
+            "italic": false,
+            "outlineColor": "0;0;0",
+            "outlineThickness": 2,
+            "shadowAngle": 90,
+            "shadowBlurRadius": 2,
+            "shadowColor": "0;0;0",
+            "shadowDistance": 4,
+            "shadowOpacity": 127,
+            "smoothed": true,
+            "underlined": false,
+            "text": "Text",
+            "font": "",
+            "textAlignment": "left",
+            "verticalTextAlignment": "top",
+            "characterSize": 50,
+            "lineHeight": 0,
+            "color": "255;255;255"
+          }
         }
       ],
       "objectsFolderStructure": {
@@ -622,6 +687,9 @@
           },
           {
             "objectName": "Ustawienia"
+          },
+          {
+            "objectName": "Highscore2"
           }
         ]
       },
@@ -680,8 +748,29 @@
         },
         {
           "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": []
+          "conditions": [
+            {
+              "type": {
+                "value": "SceneJustBegins"
+              },
+              "parameters": [
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+              },
+              "parameters": [
+                "Highscore2",
+                "Text",
+                "=",
+                "\"Highscore:\" + Highscore"
+              ]
+            }
+          ]
         }
       ],
       "layers": [
@@ -821,6 +910,14 @@
         {
           "name": "Resizable",
           "type": "ResizableCapability::ResizableBehavior"
+        },
+        {
+          "name": "Scale",
+          "type": "ScalableCapability::ScalableBehavior"
+        },
+        {
+          "name": "Text",
+          "type": "TextContainerCapability::TextContainerBehavior"
         }
       ]
     },
@@ -906,7 +1003,7 @@
           "persistentUuid": "e659fd34-c9ce-45b0-900f-ba3389843e0b",
           "width": 702,
           "x": 593,
-          "y": 392,
+          "y": 398,
           "zOrder": 3,
           "numberProperties": [],
           "stringProperties": [],
@@ -963,6 +1060,7 @@
         {
           "assetStoreId": "bfeeb465a4a164b560a2215e3ff9e78e66123af43cbf7ef1f22d56fca4271c80",
           "name": "dźwięk",
+          "persistentUuid": "90d6daf7-19ab-472a-8b82-f5a72acb27ec",
           "type": "PanelSpriteSlider::PanelSpriteSlider",
           "variant": "Square white slider",
           "variables": [
@@ -1681,9 +1779,9 @@
             {
               "name": "Health",
               "type": "Health::Health",
-              "Health": 10,
+              "Health": 2,
               "CurrentHealth": 0,
-              "MaxHealth": 10,
+              "MaxHealth": 2,
               "DamageCooldown": 0.5,
               "AllowOverHealing": false,
               "IsHealthJustDamaged": false,
@@ -2542,7 +2640,7 @@
                 "value": "CollisionNP"
               },
               "parameters": [
-                "",
+                "atak",
                 "EnemyTemp",
                 "",
                 "",
@@ -2556,7 +2654,7 @@
                 "value": "Delete"
               },
               "parameters": [
-                "",
+                "atak",
                 ""
               ]
             },
@@ -2932,35 +3030,8 @@
               "events": [
                 {
                   "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "value": "CollisionNP"
-                      },
-                      "parameters": [
-                        "atak",
-                        "EnemyTemp",
-                        "",
-                        "",
-                        "no"
-                      ]
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "value": "Health::Health::Hit"
-                      },
-                      "parameters": [
-                        "EnemyTemp",
-                        "Health",
-                        "10",
-                        "",
-                        "",
-                        ""
-                      ]
-                    }
-                  ]
+                  "conditions": [],
+                  "actions": []
                 }
               ]
             },
@@ -2971,6 +3042,107 @@
             }
           ],
           "parameters": []
+        },
+        {
+          "colorB": 228,
+          "colorG": 176,
+          "colorR": 74,
+          "creationTime": 0,
+          "name": "High Score",
+          "source": "",
+          "type": "BuiltinCommonInstructions::Group",
+          "events": [],
+          "parameters": []
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "SceneJustBegins"
+              },
+              "parameters": [
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "ReadStringFromStorage"
+              },
+              "parameters": [
+                "\"Score\"",
+                "\"Score\"",
+                "",
+                "Highscore"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "Highscore",
+                "<",
+                "Points"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Highscore",
+                "=",
+                "Points"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "Health::Health::IsDead"
+              },
+              "parameters": [
+                "Character",
+                "Health",
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "Scene"
+              },
+              "parameters": [
+                "",
+                "\"Menu główne\"",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"Score\"",
+                "\"Score\"",
+                "GlobalVarToJSON(Highscore)"
+              ]
+            }
+          ]
         }
       ],
       "layers": [
@@ -3198,12 +3370,23 @@
           "objectGroups": []
         }
       ],
+      "eventsFunctionsFolderStructure": {
+        "folderName": "__ROOT",
+        "children": [
+          {
+            "functionName": "IsInGameEdition"
+          }
+        ]
+      },
       "eventsBasedBehaviors": [
         {
           "description": "The finite state machine used internally by the button object.",
           "fullName": "Button finite state machine",
+          "helpPath": "",
+          "iconUrl": "",
           "name": "ButtonFSM",
           "objectType": "",
+          "previewIconUrl": "",
           "private": true,
           "eventsFunctions": [
             {
@@ -4298,6 +4481,41 @@
               "objectGroups": []
             }
           ],
+          "eventsFunctionsFolderStructure": {
+            "folderName": "__ROOT",
+            "children": [
+              {
+                "functionName": "doStepPostEvents"
+              },
+              {
+                "functionName": "onDeActivate"
+              },
+              {
+                "functionName": "ResetState"
+              },
+              {
+                "functionName": "IsIdle"
+              },
+              {
+                "functionName": "IsClicked"
+              },
+              {
+                "functionName": "IsHovered"
+              },
+              {
+                "functionName": "IsFocused"
+              },
+              {
+                "functionName": "IsPressed"
+              },
+              {
+                "functionName": "IsPressedOutside"
+              },
+              {
+                "functionName": "TouchId"
+              }
+            ]
+          },
           "propertyDescriptors": [
             {
               "value": "true",
@@ -4401,9 +4619,12 @@
           "defaultName": "Button",
           "description": "A button that can be customized.",
           "fullName": "Button (panel sprite)",
+          "helpPath": "",
+          "iconUrl": "",
           "isInnerAreaFollowingParentSize": true,
           "isUsingLegacyInstancesRenderer": false,
           "name": "PanelSpriteButton",
+          "previewIconUrl": "",
           "objects": [
             {
               "assetStoreId": "",
@@ -5822,6 +6043,56 @@
               "objectGroups": []
             }
           ],
+          "eventsFunctionsFolderStructure": {
+            "folderName": "__ROOT",
+            "children": [
+              {
+                "functionName": "onCreated"
+              },
+              {
+                "functionName": "onHotReloading"
+              },
+              {
+                "functionName": "doStepPostEvents"
+              },
+              {
+                "functionName": "IsIdle"
+              },
+              {
+                "functionName": "IsClicked"
+              },
+              {
+                "functionName": "IsHovered"
+              },
+              {
+                "functionName": "IsFocused"
+              },
+              {
+                "functionName": "IsPressed"
+              },
+              {
+                "functionName": "SetLabelText"
+              },
+              {
+                "functionName": "SetLabelTextOp"
+              },
+              {
+                "functionName": "LabelText"
+              },
+              {
+                "functionName": "Activate"
+              },
+              {
+                "functionName": "IsActivated"
+              },
+              {
+                "functionName": "LabelOffset"
+              },
+              {
+                "functionName": "SetLabelOffset"
+              }
+            ]
+          },
           "propertyDescriptors": [
             {
               "value": "",
@@ -6596,12 +6867,23 @@
           "objectGroups": []
         }
       ],
+      "eventsFunctionsFolderStructure": {
+        "folderName": "__ROOT",
+        "children": [
+          {
+            "functionName": "IsInGameEdition"
+          }
+        ]
+      },
       "eventsBasedBehaviors": [
         {
           "description": "Represent a value on a slider.",
           "fullName": "Slider",
+          "helpPath": "",
+          "iconUrl": "",
           "name": "Slider",
           "objectType": "",
+          "previewIconUrl": "",
           "private": true,
           "eventsFunctions": [
             {
@@ -6766,6 +7048,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "MinValue",
+              "group": "Resource bar configuration",
               "name": "SetMinValue",
               "sentence": "",
               "events": [
@@ -6858,6 +7141,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "MaxValue",
+              "group": "Resource bar configuration",
               "name": "SetMaxValue",
               "sentence": "",
               "events": [
@@ -6990,6 +7274,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "StepSize",
+              "group": "Resource bar configuration",
               "name": "SetStepSize",
               "sentence": "",
               "events": [
@@ -7038,6 +7323,43 @@
               "objectGroups": []
             }
           ],
+          "eventsFunctionsFolderStructure": {
+            "folderName": "__ROOT",
+            "children": [
+              {
+                "functionName": "Value"
+              },
+              {
+                "functionName": "SetValue"
+              },
+              {
+                "folderName": "Resource bar configuration",
+                "children": [
+                  {
+                    "functionName": "MinValue"
+                  },
+                  {
+                    "functionName": "SetMinValue"
+                  },
+                  {
+                    "functionName": "MaxValue"
+                  },
+                  {
+                    "functionName": "SetMaxValue"
+                  },
+                  {
+                    "functionName": "StepSize"
+                  },
+                  {
+                    "functionName": "SetStepSize"
+                  }
+                ]
+              },
+              {
+                "functionName": "Size"
+              }
+            ]
+          },
           "propertyDescriptors": [
             {
               "value": "0",
@@ -7085,8 +7407,11 @@
         {
           "description": "The finite state machine used internally by the button object.",
           "fullName": "Button finite state machine",
+          "helpPath": "",
+          "iconUrl": "",
           "name": "ButtonFSM",
           "objectType": "",
+          "previewIconUrl": "",
           "private": true,
           "eventsFunctions": [
             {
@@ -8141,6 +8466,38 @@
               "objectGroups": []
             }
           ],
+          "eventsFunctionsFolderStructure": {
+            "folderName": "__ROOT",
+            "children": [
+              {
+                "functionName": "doStepPostEvents"
+              },
+              {
+                "functionName": "onDeActivate"
+              },
+              {
+                "functionName": "IsIdle"
+              },
+              {
+                "functionName": "IsClicked"
+              },
+              {
+                "functionName": "IsHovered"
+              },
+              {
+                "functionName": "IsFocused"
+              },
+              {
+                "functionName": "IsPressed"
+              },
+              {
+                "functionName": "IsPressedOutside"
+              },
+              {
+                "functionName": "TouchId"
+              }
+            ]
+          },
           "propertyDescriptors": [
             {
               "value": "true",
@@ -8244,9 +8601,12 @@
           "defaultName": "Slider",
           "description": "Let users select a numerical value by dragging a slider.",
           "fullName": "Slider",
+          "helpPath": "",
+          "iconUrl": "",
           "isInnerAreaFollowingParentSize": true,
           "isUsingLegacyInstancesRenderer": false,
           "name": "PanelSpriteSlider",
+          "previewIconUrl": "",
           "objects": [
             {
               "assetStoreId": "",
@@ -9402,6 +9762,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "MinValue",
+              "group": "Slider configuration",
               "name": "SetMinValue",
               "sentence": "",
               "events": [
@@ -9489,6 +9850,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "MaxValue",
+              "group": "Slider configuration",
               "name": "SetMaxValue",
               "sentence": "",
               "events": [
@@ -9576,6 +9938,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "StepSize",
+              "group": "Slider configuration",
               "name": "SetStepSize",
               "sentence": "",
               "events": [
@@ -10137,6 +10500,78 @@
               "objectGroups": []
             }
           ],
+          "eventsFunctionsFolderStructure": {
+            "folderName": "__ROOT",
+            "children": [
+              {
+                "functionName": "onCreated"
+              },
+              {
+                "functionName": "onHotReloading"
+              },
+              {
+                "functionName": "doStepPostEvents"
+              },
+              {
+                "folderName": "Slider",
+                "children": [
+                  {
+                    "functionName": "IsBeingDragged"
+                  }
+                ]
+              },
+              {
+                "functionName": "Value"
+              },
+              {
+                "functionName": "SetValue"
+              },
+              {
+                "folderName": "Slider configuration",
+                "children": [
+                  {
+                    "functionName": "MinValue"
+                  },
+                  {
+                    "functionName": "SetMinValue"
+                  },
+                  {
+                    "functionName": "MaxValue"
+                  },
+                  {
+                    "functionName": "SetMaxValue"
+                  },
+                  {
+                    "functionName": "StepSize"
+                  },
+                  {
+                    "functionName": "SetStepSize"
+                  },
+                  {
+                    "functionName": "IsLabelShown"
+                  },
+                  {
+                    "functionName": "SetLabelShown"
+                  }
+                ]
+              },
+              {
+                "functionName": "UpdateThumbPosition"
+              },
+              {
+                "functionName": "FullBarWidth"
+              },
+              {
+                "functionName": "UpdateSliderConfiguration"
+              },
+              {
+                "functionName": "Activate"
+              },
+              {
+                "functionName": "IsActivated"
+              }
+            ]
+          },
           "propertyDescriptors": [
             {
               "value": "0",
@@ -10673,12 +11108,18 @@
       "globalVariables": [],
       "sceneVariables": [],
       "eventsFunctions": [],
+      "eventsFunctionsFolderStructure": {
+        "folderName": "__ROOT"
+      },
       "eventsBasedBehaviors": [
         {
           "description": "Face object towards the direction of movement.",
           "fullName": "Face forward",
+          "helpPath": "",
+          "iconUrl": "",
           "name": "FaceForward",
           "objectType": "",
+          "previewIconUrl": "",
           "eventsFunctions": [
             {
               "fullName": "",
@@ -11054,6 +11495,29 @@
               "objectGroups": []
             }
           ],
+          "eventsFunctionsFolderStructure": {
+            "folderName": "__ROOT",
+            "children": [
+              {
+                "functionName": "doStepPostEvents"
+              },
+              {
+                "functionName": "SetRotationSpeed"
+              },
+              {
+                "functionName": "SetOffsetAngle"
+              },
+              {
+                "functionName": "RotationSpeed"
+              },
+              {
+                "functionName": "OffsetAngle"
+              },
+              {
+                "functionName": "MovementDirection"
+              }
+            ]
+          },
           "propertyDescriptors": [
             {
               "value": "0",
@@ -11149,12 +11613,18 @@
       "globalVariables": [],
       "sceneVariables": [],
       "eventsFunctions": [],
+      "eventsFunctionsFolderStructure": {
+        "folderName": "__ROOT"
+      },
       "eventsBasedBehaviors": [
         {
           "description": "Change the animation according to the movement direction.",
           "fullName": "Top-down movement animator",
+          "helpPath": "",
+          "iconUrl": "",
           "name": "TopDownMovementAnimator",
           "objectType": "",
+          "previewIconUrl": "",
           "eventsFunctions": [
             {
               "fullName": "",
@@ -12348,6 +12818,59 @@
               "objectGroups": []
             }
           ],
+          "eventsFunctionsFolderStructure": {
+            "folderName": "__ROOT",
+            "children": [
+              {
+                "functionName": "onCreated"
+              },
+              {
+                "functionName": "onActivate"
+              },
+              {
+                "functionName": "doStepPostEvents"
+              },
+              {
+                "functionName": "UpdateAnimation"
+              },
+              {
+                "functionName": "AnimationName"
+              },
+              {
+                "functionName": "SetAnimationName"
+              },
+              {
+                "functionName": "IsPausingAnimation"
+              },
+              {
+                "functionName": "SetIsPausingAnimation"
+              },
+              {
+                "functionName": "IsScalingAnimation"
+              },
+              {
+                "functionName": "SetIsScalingAnimation"
+              },
+              {
+                "functionName": "UpdateAnimationSpeedScale"
+              },
+              {
+                "functionName": "UpdateAnimationPause"
+              },
+              {
+                "functionName": "Direction"
+              },
+              {
+                "functionName": "DirectionDifference"
+              },
+              {
+                "functionName": "UpdateAnimationDirection"
+              },
+              {
+                "functionName": "UpdateAnimationName"
+              }
+            ]
+          },
           "propertyDescriptors": [
             {
               "value": "",
@@ -12530,12 +13053,18 @@
       "globalVariables": [],
       "sceneVariables": [],
       "eventsFunctions": [],
+      "eventsFunctionsFolderStructure": {
+        "folderName": "__ROOT"
+      },
       "eventsBasedBehaviors": [
         {
           "description": "Smoothly scroll to follow an object.",
           "fullName": "Smooth Camera",
+          "helpPath": "",
+          "iconUrl": "",
           "name": "SmoothCamera",
           "objectType": "",
+          "previewIconUrl": "",
           "quickCustomizationVisibility": "hidden",
           "eventsFunctions": [
             {
@@ -14435,6 +14964,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "OffsetX",
+              "group": "Camera configuration",
               "name": "SetOffsetXOp",
               "sentence": "",
               "events": [
@@ -14575,6 +15105,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "OffsetY",
+              "group": "Camera configuration",
               "name": "SetOffsetYOp",
               "sentence": "",
               "events": [
@@ -16932,6 +17463,141 @@
               "objectGroups": []
             }
           ],
+          "eventsFunctionsFolderStructure": {
+            "folderName": "__ROOT",
+            "children": [
+              {
+                "functionName": "onCreated"
+              },
+              {
+                "functionName": "doStepPreEvents"
+              },
+              {
+                "functionName": "MoveCameraCloser"
+              },
+              {
+                "functionName": "DoMoveCameraCloser"
+              },
+              {
+                "functionName": "WaitAndCatchUp"
+              },
+              {
+                "functionName": "DrawDebug"
+              },
+              {
+                "folderName": "Camera configuration",
+                "children": [
+                  {
+                    "functionName": "SetFollowOnX"
+                  },
+                  {
+                    "functionName": "SetFollowOnY"
+                  },
+                  {
+                    "functionName": "SetFollowFreeAreaRight"
+                  },
+                  {
+                    "functionName": "SetFollowFreeAreaLeft"
+                  },
+                  {
+                    "functionName": "SetFollowFreeAreaTop"
+                  },
+                  {
+                    "functionName": "SetFollowFreeAreaBottom"
+                  },
+                  {
+                    "functionName": "SetLeftwardSpeedMax"
+                  },
+                  {
+                    "functionName": "SetRightwardSpeedMax"
+                  },
+                  {
+                    "functionName": "SetUpwardSpeedMax"
+                  },
+                  {
+                    "functionName": "SetDownwardSpeedMax"
+                  },
+                  {
+                    "functionName": "SetLeftwardSpeed"
+                  },
+                  {
+                    "functionName": "SetRightwardSpeed"
+                  },
+                  {
+                    "functionName": "SetDownwardSpeed"
+                  },
+                  {
+                    "functionName": "SetUpwardSpeed"
+                  },
+                  {
+                    "functionName": "OffsetX"
+                  },
+                  {
+                    "functionName": "SetOffsetXOp"
+                  },
+                  {
+                    "functionName": "SetOffsetX"
+                  },
+                  {
+                    "functionName": "OffsetY"
+                  },
+                  {
+                    "functionName": "SetOffsetYOp"
+                  },
+                  {
+                    "functionName": "SetOffsetY"
+                  },
+                  {
+                    "functionName": "SetForecastTime"
+                  },
+                  {
+                    "functionName": "SetCameraDelay"
+                  }
+                ]
+              },
+              {
+                "folderName": "Private",
+                "children": [
+                  {
+                    "functionName": "FreeAreaLeft"
+                  },
+                  {
+                    "functionName": "FreeAreaRight"
+                  },
+                  {
+                    "functionName": "FreeAreaBottom"
+                  },
+                  {
+                    "functionName": "FreeAreaTop"
+                  },
+                  {
+                    "functionName": "UpdateDelayedPosition"
+                  },
+                  {
+                    "functionName": "AddForecastHistoryPosition"
+                  },
+                  {
+                    "functionName": "UpdateForecastedPosition"
+                  },
+                  {
+                    "functionName": "ProjectHistoryEnds"
+                  },
+                  {
+                    "functionName": "ForecastTimeRatio"
+                  }
+                ]
+              },
+              {
+                "functionName": "IsDelayed"
+              },
+              {
+                "functionName": "CurrentDelay"
+              },
+              {
+                "functionName": "IsWaiting"
+              }
+            ]
+          },
           "propertyDescriptors": [
             {
               "value": "0.9",
@@ -17467,8 +18133,11 @@
         {
           "description": "Smoothly scroll to follow a character and stabilize the camera when jumping.",
           "fullName": "Smooth platformer camera",
+          "helpPath": "",
+          "iconUrl": "",
           "name": "SmoothPlatformerCamera",
           "objectType": "",
+          "previewIconUrl": "",
           "quickCustomizationVisibility": "hidden",
           "eventsFunctions": [
             {
@@ -17686,6 +18355,14 @@
               "objectGroups": []
             }
           ],
+          "eventsFunctionsFolderStructure": {
+            "folderName": "__ROOT",
+            "children": [
+              {
+                "functionName": "doStepPreEvents"
+              }
+            ]
+          },
           "propertyDescriptors": [
             {
               "value": "",
@@ -17932,12 +18609,18 @@
       "globalVariables": [],
       "sceneVariables": [],
       "eventsFunctions": [],
+      "eventsFunctionsFolderStructure": {
+        "folderName": "__ROOT"
+      },
       "eventsBasedBehaviors": [
         {
           "description": "Fire bullets with built-in cooldown, ammo, reloading, and overheating. Once added to your object that must shoot, use the behavior actions to fire another object as a bullet. These actions check all constraints internally (can be called without conditions, they will only fire when ready) and will make the bullet move (using a permanent force).",
           "fullName": "Fire bullets",
+          "helpPath": "",
+          "iconUrl": "",
           "name": "FireBullet",
           "objectType": "",
+          "previewIconUrl": "",
           "eventsFunctions": [
             {
               "fullName": "",
@@ -19309,6 +19992,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "FiringArc",
+              "group": "Multi-Fire",
               "name": "SetFiringArcOp",
               "sentence": "",
               "events": [
@@ -19442,6 +20126,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "AngleVariance",
+              "group": "Firing variance",
               "name": "SetAngleVarianceOp",
               "sentence": "",
               "events": [
@@ -19575,6 +20260,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "BulletSpeedVariance",
+              "group": "Firing variance",
               "name": "SetBulletSpeedVarianceOp",
               "sentence": "",
               "events": [
@@ -19708,6 +20394,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "BulletQuantity",
+              "group": "Multi-Fire",
               "name": "SetBulletQuantityOp",
               "sentence": "",
               "events": [
@@ -20058,6 +20745,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "Cooldown",
+              "group": "Firing",
               "name": "SetCooldownOp",
               "sentence": "",
               "events": [
@@ -20191,6 +20879,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "ReloadDuration",
+              "group": "Reload",
               "name": "SetReloadDurationOp",
               "sentence": "",
               "events": [
@@ -20324,6 +21013,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "OverheatDuration",
+              "group": "Overheat",
               "name": "SetOverheatDurationOp",
               "sentence": "",
               "events": [
@@ -20457,6 +21147,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "AmmoQuantity",
+              "group": "Ammo",
               "name": "SetAmmoQuantityOp",
               "sentence": "",
               "events": [
@@ -20590,6 +21281,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "HeatIncreasePerShot",
+              "group": "Overheat",
               "name": "SetHeatPerShotOp",
               "sentence": "",
               "events": [
@@ -20723,6 +21415,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "MaxAmmo",
+              "group": "Ammo",
               "name": "SetMaxAmmoOp",
               "sentence": "",
               "events": [
@@ -21003,6 +21696,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "ShotsPerReload",
+              "group": "Reload",
               "name": "SetShotsPerReloadOp",
               "sentence": "",
               "events": [
@@ -21237,6 +21931,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "LinearCoolingRate",
+              "group": "Overheat",
               "name": "SetLinearCoolingRateOp",
               "sentence": "",
               "events": [
@@ -21370,6 +22065,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "ExponentialCoolingRate",
+              "group": "Overheat",
               "name": "SetExponentialCoolingRateOp",
               "sentence": "",
               "events": [
@@ -22609,6 +23305,265 @@
               "objectGroups": []
             }
           ],
+          "eventsFunctionsFolderStructure": {
+            "folderName": "__ROOT",
+            "children": [
+              {
+                "functionName": "onCreated"
+              },
+              {
+                "functionName": "doStepPreEvents"
+              },
+              {
+                "functionName": "FireTowardObject"
+              },
+              {
+                "functionName": "FireTowardPosition"
+              },
+              {
+                "functionName": "Fire"
+              },
+              {
+                "folderName": "Firing",
+                "children": [
+                  {
+                    "functionName": "FireSingleBullet"
+                  },
+                  {
+                    "functionName": "HasJustFired"
+                  },
+                  {
+                    "functionName": "BulletRotationEnabled"
+                  },
+                  {
+                    "functionName": "SetAngleVariance"
+                  },
+                  {
+                    "functionName": "SetBulletLayer"
+                  },
+                  {
+                    "functionName": "SetRotateBullet"
+                  },
+                  {
+                    "functionName": "Cooldown"
+                  },
+                  {
+                    "functionName": "SetCooldownOp"
+                  },
+                  {
+                    "functionName": "SetCooldown"
+                  },
+                  {
+                    "functionName": "CooldownTimeLeft"
+                  },
+                  {
+                    "functionName": "IsReadyToShoot"
+                  },
+                  {
+                    "functionName": "IsFiringCooldownActive"
+                  }
+                ]
+              },
+              {
+                "functionName": "ReloadAmmo"
+              },
+              {
+                "folderName": "Multi-Fire",
+                "children": [
+                  {
+                    "functionName": "FiringArc"
+                  },
+                  {
+                    "functionName": "SetFiringArcOp"
+                  },
+                  {
+                    "functionName": "SetFiringArc"
+                  },
+                  {
+                    "functionName": "SetBulletSpeedVariance"
+                  },
+                  {
+                    "functionName": "BulletQuantity"
+                  },
+                  {
+                    "functionName": "SetBulletQuantityOp"
+                  },
+                  {
+                    "functionName": "SetBulletQuantity"
+                  },
+                  {
+                    "functionName": "BulletLayer"
+                  }
+                ]
+              },
+              {
+                "folderName": "Firing variance",
+                "children": [
+                  {
+                    "functionName": "AngleVariance"
+                  },
+                  {
+                    "functionName": "SetAngleVarianceOp"
+                  },
+                  {
+                    "functionName": "BulletSpeedVariance"
+                  },
+                  {
+                    "functionName": "SetBulletSpeedVarianceOp"
+                  }
+                ]
+              },
+              {
+                "folderName": "Ammo",
+                "children": [
+                  {
+                    "functionName": "SetUnlimitedAmmo"
+                  },
+                  {
+                    "functionName": "AmmoQuantity"
+                  },
+                  {
+                    "functionName": "SetAmmoQuantityOp"
+                  },
+                  {
+                    "functionName": "SetAmmoQuantity"
+                  },
+                  {
+                    "functionName": "MaxAmmo"
+                  },
+                  {
+                    "functionName": "SetMaxAmmoOp"
+                  },
+                  {
+                    "functionName": "SetMaxAmmo"
+                  },
+                  {
+                    "functionName": "IsUnlimitedAmmo"
+                  },
+                  {
+                    "functionName": "IsOutOfAmmo"
+                  }
+                ]
+              },
+              {
+                "folderName": "Reload",
+                "children": [
+                  {
+                    "functionName": "ReloadDuration"
+                  },
+                  {
+                    "functionName": "SetReloadDurationOp"
+                  },
+                  {
+                    "functionName": "SetReloadDuration"
+                  },
+                  {
+                    "functionName": "ShotsPerReload"
+                  },
+                  {
+                    "functionName": "SetShotsPerReloadOp"
+                  },
+                  {
+                    "functionName": "SetShotsPerReload"
+                  },
+                  {
+                    "functionName": "SetAutomaticReload"
+                  },
+                  {
+                    "functionName": "ShotsBeforeNextReload"
+                  },
+                  {
+                    "functionName": "ReloadTimeLeft"
+                  },
+                  {
+                    "functionName": "IsReloadInProgress"
+                  },
+                  {
+                    "functionName": "IsAutomaticReloadingEnabled"
+                  },
+                  {
+                    "functionName": "IsReloadNeeded"
+                  }
+                ]
+              },
+              {
+                "folderName": "Overheat",
+                "children": [
+                  {
+                    "functionName": "OverheatDuration"
+                  },
+                  {
+                    "functionName": "SetOverheatDurationOp"
+                  },
+                  {
+                    "functionName": "SetOverheatDuration"
+                  },
+                  {
+                    "functionName": "HeatIncreasePerShot"
+                  },
+                  {
+                    "functionName": "SetHeatPerShotOp"
+                  },
+                  {
+                    "functionName": "SetHeatPerShot"
+                  },
+                  {
+                    "functionName": "LinearCoolingRate"
+                  },
+                  {
+                    "functionName": "SetLinearCoolingRateOp"
+                  },
+                  {
+                    "functionName": "SetLinearCoolingRate"
+                  },
+                  {
+                    "functionName": "ExponentialCoolingRate"
+                  },
+                  {
+                    "functionName": "SetExponentialCoolingRateOp"
+                  },
+                  {
+                    "functionName": "SetExponentialCoolingRate"
+                  },
+                  {
+                    "functionName": "HeatLevel"
+                  },
+                  {
+                    "functionName": "OverheatTimeLeft"
+                  },
+                  {
+                    "functionName": "IsOverheated"
+                  }
+                ]
+              },
+              {
+                "folderName": "Stats",
+                "children": [
+                  {
+                    "functionName": "ResetTotalShotsFired"
+                  },
+                  {
+                    "functionName": "ResetTotalBulletsCreated"
+                  },
+                  {
+                    "functionName": "ResetTotalReloadsCompleted"
+                  },
+                  {
+                    "functionName": "TotalShotsFired"
+                  },
+                  {
+                    "functionName": "TotalBulletsCreated"
+                  },
+                  {
+                    "functionName": "TotalReloadsCompleted"
+                  }
+                ]
+              },
+              {
+                "functionName": "IncreaseAmmo"
+              }
+            ]
+          },
           "propertyDescriptors": [
             {
               "value": "0.1",
@@ -22996,12 +23951,18 @@
       "globalVariables": [],
       "sceneVariables": [],
       "eventsFunctions": [],
+      "eventsFunctionsFolderStructure": {
+        "folderName": "__ROOT"
+      },
       "eventsBasedBehaviors": [
         {
           "description": "Manage health (life) points, shield and armor.",
           "fullName": "Health",
+          "helpPath": "",
+          "iconUrl": "",
           "name": "Health",
           "objectType": "",
+          "previewIconUrl": "",
           "eventsFunctions": [
             {
               "fullName": "",
@@ -24494,6 +25455,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "MaxHealth",
+              "group": "Health configuration",
               "name": "SetMaxHealthOp",
               "sentence": "",
               "events": [
@@ -24666,6 +25628,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "HealthRegenRate",
+              "group": "Health configuration",
               "name": "SetHealthRegenRateOp",
               "sentence": "",
               "events": [
@@ -24799,6 +25762,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "DamageCooldownDuration",
+              "group": "Health configuration",
               "name": "SetCooldownDurationOp",
               "sentence": "",
               "events": [
@@ -24932,6 +25896,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "HealthRegenDelay",
+              "group": "Health configuration",
               "name": "SetHealthRegenDelayOp",
               "sentence": "",
               "events": [
@@ -25065,6 +26030,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "ChanceToDodge",
+              "group": "Health configuration",
               "name": "SetChanceToDodgeOp",
               "sentence": "",
               "events": [
@@ -25198,6 +26164,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "FlatDamageReduction",
+              "group": "Health configuration",
               "name": "SetFlatDamageReductionOp",
               "sentence": "",
               "events": [
@@ -25331,6 +26298,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "PercentDamageReduction",
+              "group": "Health configuration",
               "name": "SetPercentDamageReductionOp",
               "sentence": "",
               "events": [
@@ -26259,6 +27227,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "MaxShield",
+              "group": "Shield configuration",
               "name": "SetMaxShieldOp",
               "sentence": "",
               "events": [
@@ -26440,6 +27409,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "ShieldPoints",
+              "group": "Shield",
               "name": "SetShieldPointsOp",
               "sentence": "",
               "events": [
@@ -26573,6 +27543,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "ShieldRegenRate",
+              "group": "Shield configuration",
               "name": "SetShieldRegenRateOp",
               "sentence": "",
               "events": [
@@ -26706,6 +27677,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "ShieldRegenDelay",
+              "group": "Shield configuration",
               "name": "SetShieldRegenDelayOp",
               "sentence": "",
               "events": [
@@ -26839,6 +27811,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "ShieldDuration",
+              "group": "Shield configuration",
               "name": "SetShieldDurationOp",
               "sentence": "",
               "events": [
@@ -27560,6 +28533,226 @@
               "objectGroups": []
             }
           ],
+          "eventsFunctionsFolderStructure": {
+            "folderName": "__ROOT",
+            "children": [
+              {
+                "functionName": "onCreated"
+              },
+              {
+                "functionName": "doStepPreEvents"
+              },
+              {
+                "folderName": "Health",
+                "children": [
+                  {
+                    "functionName": "Hit"
+                  },
+                  {
+                    "functionName": "Health"
+                  },
+                  {
+                    "functionName": "SetHealth"
+                  },
+                  {
+                    "functionName": "Heal"
+                  },
+                  {
+                    "functionName": "TriggerDamageCooldown"
+                  },
+                  {
+                    "functionName": "HitAtLeastOnce"
+                  },
+                  {
+                    "functionName": "IsJustDamaged"
+                  },
+                  {
+                    "functionName": "IsJustHealed"
+                  },
+                  {
+                    "functionName": "IsDamageCooldownActive"
+                  },
+                  {
+                    "functionName": "DamageCooldownRemaining"
+                  },
+                  {
+                    "functionName": "IsDead"
+                  },
+                  {
+                    "functionName": "TimeSinceLastHit"
+                  },
+                  {
+                    "functionName": "PreviousDamageTaken"
+                  },
+                  {
+                    "functionName": "IsJustDodged"
+                  },
+                  {
+                    "functionName": "PreviousHealAmount"
+                  }
+                ]
+              },
+              {
+                "folderName": "Health configuration",
+                "children": [
+                  {
+                    "functionName": "SetCurrentHealth"
+                  },
+                  {
+                    "functionName": "MaxHealth"
+                  },
+                  {
+                    "functionName": "SetMaxHealthOp"
+                  },
+                  {
+                    "functionName": "SetMaxHealth"
+                  },
+                  {
+                    "functionName": "HealthRegenRate"
+                  },
+                  {
+                    "functionName": "SetHealthRegenRateOp"
+                  },
+                  {
+                    "functionName": "SetHealthRegenRate"
+                  },
+                  {
+                    "functionName": "DamageCooldownDuration"
+                  },
+                  {
+                    "functionName": "SetCooldownDurationOp"
+                  },
+                  {
+                    "functionName": "SetCooldownDuration"
+                  },
+                  {
+                    "functionName": "HealthRegenDelay"
+                  },
+                  {
+                    "functionName": "SetHealthRegenDelayOp"
+                  },
+                  {
+                    "functionName": "SetHealthRegenDelay"
+                  },
+                  {
+                    "functionName": "ChanceToDodge"
+                  },
+                  {
+                    "functionName": "SetChanceToDodgeOp"
+                  },
+                  {
+                    "functionName": "SetChanceToDodge"
+                  },
+                  {
+                    "functionName": "FlatDamageReduction"
+                  },
+                  {
+                    "functionName": "SetFlatDamageReductionOp"
+                  },
+                  {
+                    "functionName": "SetFlatDamageReduction"
+                  },
+                  {
+                    "functionName": "PercentDamageReduction"
+                  },
+                  {
+                    "functionName": "SetPercentDamageReductionOp"
+                  },
+                  {
+                    "functionName": "SetPercentDamageReduction"
+                  },
+                  {
+                    "functionName": "AllowOverHealing"
+                  },
+                  {
+                    "functionName": "SetHitAtLeastOnce"
+                  },
+                  {
+                    "functionName": "SetJustDamaged"
+                  }
+                ]
+              },
+              {
+                "folderName": "Shield configuration",
+                "children": [
+                  {
+                    "functionName": "MaxShield"
+                  },
+                  {
+                    "functionName": "SetMaxShieldOp"
+                  },
+                  {
+                    "functionName": "SetMaxShield"
+                  },
+                  {
+                    "functionName": "SetMaxShieldPoints"
+                  },
+                  {
+                    "functionName": "SetShieldPoints"
+                  },
+                  {
+                    "functionName": "ShieldRegenRate"
+                  },
+                  {
+                    "functionName": "SetShieldRegenRateOp"
+                  },
+                  {
+                    "functionName": "SetShieldRegenRate"
+                  },
+                  {
+                    "functionName": "ShieldRegenDelay"
+                  },
+                  {
+                    "functionName": "SetShieldRegenDelayOp"
+                  },
+                  {
+                    "functionName": "SetShieldRegenDelay"
+                  },
+                  {
+                    "functionName": "ShieldDuration"
+                  },
+                  {
+                    "functionName": "SetShieldDurationOp"
+                  },
+                  {
+                    "functionName": "SetShieldDuration"
+                  },
+                  {
+                    "functionName": "SetShieldBlockExcessDamage"
+                  }
+                ]
+              },
+              {
+                "folderName": "Shield",
+                "children": [
+                  {
+                    "functionName": "ShieldPoints"
+                  },
+                  {
+                    "functionName": "SetShieldPointsOp"
+                  },
+                  {
+                    "functionName": "RenewShieldDuration"
+                  },
+                  {
+                    "functionName": "ActivateShield"
+                  },
+                  {
+                    "functionName": "IsShieldJustDamaged"
+                  },
+                  {
+                    "functionName": "IsShieldActive"
+                  },
+                  {
+                    "functionName": "ShieldTimeRemaining"
+                  },
+                  {
+                    "functionName": "PreviousDamageToShield"
+                  }
+                ]
+              }
+            ]
+          },
           "propertyDescriptors": [
             {
               "value": "100",
@@ -27914,12 +29107,18 @@
       "globalVariables": [],
       "sceneVariables": [],
       "eventsFunctions": [],
+      "eventsFunctionsFolderStructure": {
+        "folderName": "__ROOT"
+      },
       "eventsBasedBehaviors": [
         {
           "description": "A bar that represents a resource in the game (health, mana, ammo, etc).",
           "fullName": "Resource bar",
+          "helpPath": "",
+          "iconUrl": "",
           "name": "ResourceBar",
           "objectType": "",
+          "previewIconUrl": "",
           "private": true,
           "eventsFunctions": [
             {
@@ -28162,6 +29361,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "MaxValue",
+              "group": "Resource bar configuration",
               "name": "SetMaxValue",
               "sentence": "",
               "events": [
@@ -28417,6 +29617,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "PreviousHighValueDuration",
+              "group": "FillBar bar configuration",
               "name": "SetPreviousHighValueDuration",
               "sentence": "",
               "events": [
@@ -28512,6 +29713,57 @@
               "objectGroups": []
             }
           ],
+          "eventsFunctionsFolderStructure": {
+            "folderName": "__ROOT",
+            "children": [
+              {
+                "functionName": "doStepPostEvents"
+              },
+              {
+                "functionName": "Value"
+              },
+              {
+                "functionName": "SetValue"
+              },
+              {
+                "folderName": "Resource bar configuration",
+                "children": [
+                  {
+                    "functionName": "MaxValue"
+                  },
+                  {
+                    "functionName": "SetMaxValue"
+                  }
+                ]
+              },
+              {
+                "functionName": "IsEmpty"
+              },
+              {
+                "functionName": "IsFull"
+              },
+              {
+                "functionName": "PreviousHighValue"
+              },
+              {
+                "functionName": "UpdatePreviousHighValue"
+              },
+              {
+                "folderName": "FillBar bar configuration",
+                "children": [
+                  {
+                    "functionName": "PreviousHighValueDuration"
+                  },
+                  {
+                    "functionName": "SetPreviousHighValueDuration"
+                  }
+                ]
+              },
+              {
+                "functionName": "IsChanging"
+              }
+            ]
+          },
           "propertyDescriptors": [
             {
               "value": "1",
@@ -28571,9 +29823,12 @@
           "defaultName": "ResourceBar",
           "description": "A bar that represents a resource in the game (health, mana, ammo, etc).",
           "fullName": "Resource bar (continuous)",
+          "helpPath": "",
+          "iconUrl": "",
           "isInnerAreaFollowingParentSize": true,
           "isUsingLegacyInstancesRenderer": false,
           "name": "PanelSpriteContinuousBar",
+          "previewIconUrl": "",
           "objects": [
             {
               "assetStoreId": "",
@@ -29574,6 +30829,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "Value",
+              "group": "Resource bar",
               "name": "SetValue",
               "sentence": "",
               "events": [
@@ -29754,6 +31010,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "MaxValue",
+              "group": "Resource bar configuration",
               "name": "SetMaxValue",
               "sentence": "",
               "events": [
@@ -29938,6 +31195,7 @@
               "fullName": "",
               "functionType": "ActionWithOperator",
               "getterName": "PreviousValueDuration",
+              "group": "Resource bar configuration",
               "name": "SetPreviousValueDuration",
               "sentence": "",
               "events": [
@@ -30319,6 +31577,75 @@
               "objectGroups": []
             }
           ],
+          "eventsFunctionsFolderStructure": {
+            "folderName": "__ROOT",
+            "children": [
+              {
+                "functionName": "onCreated"
+              },
+              {
+                "functionName": "onHotReloading"
+              },
+              {
+                "functionName": "doStepPostEvents"
+              },
+              {
+                "functionName": "UpdateLayout"
+              },
+              {
+                "folderName": "Resource bar",
+                "children": [
+                  {
+                    "functionName": "Value"
+                  },
+                  {
+                    "functionName": "SetValue"
+                  },
+                  {
+                    "functionName": "IsEmpty"
+                  },
+                  {
+                    "functionName": "IsFull"
+                  },
+                  {
+                    "functionName": "IsChanging"
+                  }
+                ]
+              },
+              {
+                "folderName": "Resource bar configuration",
+                "children": [
+                  {
+                    "functionName": "MaxValue"
+                  },
+                  {
+                    "functionName": "SetMaxValue"
+                  },
+                  {
+                    "functionName": "PreviousValueDuration"
+                  },
+                  {
+                    "functionName": "SetPreviousValueDuration"
+                  },
+                  {
+                    "functionName": "IsLabelShown"
+                  },
+                  {
+                    "functionName": "SetLabelShown"
+                  }
+                ]
+              },
+              {
+                "functionName": "WidthForValue"
+              },
+              {
+                "functionName": "FullBarWidth"
+              },
+              {
+                "functionName": "UpdateLabel"
+              }
+            ]
+          },
           "propertyDescriptors": [
             {
               "value": "3",
